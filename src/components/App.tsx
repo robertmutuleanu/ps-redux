@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import HomePage from './home/HomePage';
 import AboutPage from './about/AboutPage';
 import Header from './common/Header';
@@ -8,17 +8,23 @@ import CoursesPage from './courses/CoursePage';
 
 const App = () => {
   return (
-    <Router>
-      <div className="container-fluid">
-        <Header />
-        <Switch>
-          <Route path="/" exact component={HomePage} />
-          <Route path="/about" component={AboutPage} />
-          <Route path="/courses" component={CoursesPage} />
-          <Route component={NotFoundPage} />
-        </Switch>
-      </div>
-    </Router>
+    <div className="container-fluid">
+      <Header />
+      <Switch>
+        <Route path="/" exact>
+          <HomePage />
+        </Route>
+        <Route path="/about">
+          <AboutPage />
+        </Route>
+        <Route path="/courses">
+          <CoursesPage />
+        </Route>
+        <Route>
+          <NotFoundPage />
+        </Route>
+      </Switch>
+    </div>
   );
 };
 
