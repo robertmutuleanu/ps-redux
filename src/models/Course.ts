@@ -1,9 +1,14 @@
-type Course = {
-  //id: string | null;
-  //slug: string;
+export type UpsertCourseRequest = {
+  id?: string;
   title: string;
   //authorId: string | null;
   //category: string;
 };
 
-export default Course;
+export type Course = {
+  id: string;
+  //slug: string;
+  title: string;
+  //authorId: string | null;
+  //category: string;
+};

@@ -2,16 +2,15 @@ import React, { useState } from 'react';
 import { AppState } from '../../redux/reducers';
 import { useSelector, useDispatch } from 'react-redux';
 import { createCourse } from '../../redux/actions';
+import { RouteComponentProps } from 'react-router-dom';
 
-type Props = {};
+type Props = {} & RouteComponentProps;
 
 const CoursePage = (props: Props) => {
   const courses = useSelector(mapState);
   const dispatch = useDispatch();
 
   const [course, setCourse] = useState({
-    //id: null,
-    //slug: '',
     title: ''
     //authorId: null,
     //category: ''

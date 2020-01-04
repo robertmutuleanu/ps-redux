@@ -1,10 +1,10 @@
-import Course from '../../models/Course';
+import { UpsertCourseRequest } from '../../models/Course';
 
 export const CREATE_COURSE = 'CREATE_COURSE';
 
 type CreateCourseAction = {
   type: typeof CREATE_COURSE;
-  course: Course;
+  course: UpsertCourseRequest;
 };
 
 export const DELETE_COURSE = 'DELETE_COURSE';
