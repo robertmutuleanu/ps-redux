@@ -1,6 +1,7 @@
 import React from 'react';
+import { RouteComponentProps } from 'react-router-dom';
 
-const AboutPage = () => {
+const AboutPage = (props: Props) => {
   return (
     <div>
       <h2>About</h2>
@@ -8,5 +9,7 @@ const AboutPage = () => {
     </div>
   );
 };
+
+type Props = {} & RouteComponentProps;
 
 export default AboutPage;

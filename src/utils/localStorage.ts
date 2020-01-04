@@ -1,8 +1,4 @@
-import { CoursesState } from '../reducers/courses';
-
-type PersistedState = {
-  courses: CoursesState;
-};
+import { PersistedState } from '../redux/store';
 
 export const loadState = (): PersistedState | undefined => {
   try {

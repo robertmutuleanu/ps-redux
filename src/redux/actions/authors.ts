@@ -1,19 +1,19 @@
 import * as types from './actionTypes';
-import { AuthorsAction, AppThunk } from './actionTypes';
+import { AuthorsAction } from './actionTypes';
+import { AppThunk } from '../store';
 import * as api from '../../api/authors';
-import { Author } from '../../models/Author';
+import { Author } from '../../models';
 
-export const getAuthors = (): AppThunk => dispatch => {
+export const getAuthors = (): AppThunk<Promise<any>> => dispatch => {
   dispatch(getAuthorsRequest());
 
   return api.getAuthors().then(
     response => {
       dispatch(getAuthorsSuccess(response));
-      return response;
     },
     errorMessage => {
       dispatch(getAuthorsFailure(errorMessage));
-      return { error: true, message: errorMessage };
+      throw errorMessage;
     }
   );
 };

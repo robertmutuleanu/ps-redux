@@ -1,6 +1,6 @@
 import * as types from '../actions/actionTypes';
 import { AuthorsAction } from '../actions/actionTypes';
-import { Author } from '../../models/Author';
+import { Author } from '../../models';
 
 export type AuthorsState = Author[];
 

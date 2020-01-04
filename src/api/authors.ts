@@ -1,5 +1,5 @@
 import { handleResponse, handleError } from '../utils/fetch';
-import { Author } from '../models/Author';
+import { Author } from '../models';
 
 const baseUrl = process.env.REACT_APP_API_URL + '/authors/';
 

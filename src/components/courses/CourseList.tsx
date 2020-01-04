@@ -1,12 +1,6 @@
 import React from 'react';
-import { Course } from '../../models/Course';
+import { Course } from '../../models';
 import { Link } from 'react-router-dom';
-
-type CourseWithAuthorName = Course & { authorName: string };
-
-type Props = {
-  courses: CourseWithAuthorName[];
-};
 
 const CourseList = ({ courses }: Props) => {
   return (
@@ -38,5 +32,11 @@ const CourseList = ({ courses }: Props) => {
     </table>
   );
 };
+
+type Props = {
+  courses: CourseWithAuthorName[];
+};
+
+type CourseWithAuthorName = Course & { authorName: string };
 
 export default CourseList;

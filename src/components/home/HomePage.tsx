@@ -1,7 +1,7 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, RouteComponentProps } from 'react-router-dom';
 
-const HomePage = () => {
+const HomePage = (props: Props) => {
   return (
     <div className="jumbotron">
       <h1>Pluralsight administration</h1>
@@ -12,5 +12,7 @@ const HomePage = () => {
     </div>
   );
 };
+
+type Props = {} & RouteComponentProps;
 
 export default HomePage;

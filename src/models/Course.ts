@@ -1,14 +1,15 @@
 export type UpsertCourseRequest = {
-  id?: string;
+  id: number | null;
+  slug: string;
   title: string;
-  //authorId: string | null;
-  //category: string;
+  authorId: number | null;
+  category: string;
 };
 
 export type Course = {
-  id: string;
+  id: number;
   slug: string;
   title: string;
-  authorId: string | null;
+  authorId: number;
   category: string;
 };
