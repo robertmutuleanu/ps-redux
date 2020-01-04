@@ -24,9 +24,14 @@ const ManageCoursePage = (props: Props) => {
 
   useEffect(() => {
     const slug = props.match.params.slug;
-    if (slug && !course) {
+    if (!slug) {
+      return;
+    }
+
+    if (!course) {
       dispatch(getCourse(slug));
-    } else if (slug) {
+    } else {
+      setCourseData(course);
     }
   }, [course, props.match.params.slug, dispatch]);
 
