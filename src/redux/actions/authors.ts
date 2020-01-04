@@ -4,6 +4,10 @@ import { AppThunk } from '../store';
 import * as api from '../../api/authors';
 import { Author } from '../../models';
 
+export const getAuthorsRequest = (): AuthorsAction => ({ type: types.GET_AUTHORS_REQUEST });
+export const getAuthorsSuccess = (authors: Author[]): AuthorsAction => ({ type: types.GET_AUTHORS_SUCCESS, authors });
+export const getAuthorsFailure = (message: string): AuthorsAction => ({ type: types.GET_AUTHORS_FAILURE, message });
+
 export const getAuthors = (): AppThunk<Promise<any>> => dispatch => {
   dispatch(getAuthorsRequest());
 
@@ -17,7 +21,3 @@ export const getAuthors = (): AppThunk<Promise<any>> => dispatch => {
     }
   );
 };
-
-export const getAuthorsRequest = (): AuthorsAction => ({ type: types.GET_AUTHORS_REQUEST });
-export const getAuthorsSuccess = (authors: Author[]): AuthorsAction => ({ type: types.GET_AUTHORS_SUCCESS, authors });
-export const getAuthorsFailure = (message: string): AuthorsAction => ({ type: types.GET_AUTHORS_FAILURE, message });
