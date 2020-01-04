@@ -1,15 +1,15 @@
 import { handleResponse, handleError } from '../utils/fetch';
 import { Course, UpsertCourseRequest } from '../models/Course';
 
-const baseUrl = process.env.API_URL + '/courses/';
+const baseUrl = process.env.REACT_APP_API_URL + '/courses/';
 
-export function getCourses(): Promise<Course[]> {
+export const getCourses = (): Promise<Course[]> => {
   return fetch(baseUrl)
     .then(handleResponse)
     .catch(handleError);
-}
+};
 
-export function saveCourse(course: UpsertCourseRequest) {
+export const saveCourse = (course: UpsertCourseRequest) => {
   return fetch(baseUrl + (course.id || ''), {
     method: course.id ? 'PUT' : 'POST',
     headers: { 'content-type': 'application/json' },
@@ -17,10 +17,10 @@ export function saveCourse(course: UpsertCourseRequest) {
   })
     .then(handleResponse)
     .catch(handleError);
-}
+};
 
-export function deleteCourse(courseId: string) {
+export const deleteCourse = (courseId: string) => {
   return fetch(baseUrl + courseId, { method: 'DELETE' })
     .then(handleResponse)
     .catch(handleError);
-}
+};

@@ -7,8 +7,8 @@ export type UpsertCourseRequest = {
 
 export type Course = {
   id: string;
-  //slug: string;
+  slug: string;
   title: string;
-  //authorId: string | null;
-  //category: string;
+  authorId: string | null;
+  category: string;
 };

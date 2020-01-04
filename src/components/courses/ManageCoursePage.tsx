@@ -6,7 +6,7 @@ import { RouteComponentProps } from 'react-router-dom';
 
 type Props = {} & RouteComponentProps;
 
-const CoursePage = (props: Props) => {
+const ManageCoursePage = (props: Props) => {
   const courses = useSelector(mapState);
   const dispatch = useDispatch();
 
@@ -45,4 +45,4 @@ const mapState = (state: AppState) => {
   return state.courses;
 };
 
-export default CoursePage;
+export default ManageCoursePage;
