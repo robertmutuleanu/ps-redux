@@ -14,4 +14,6 @@ type DeleteCourseAction = {
   courseId: string;
 };
 
-export type AppAction = CreateCourseAction | DeleteCourseAction;
+export type CoursesAction = CreateCourseAction | DeleteCourseAction;
+
+export type AppAction = CoursesAction;

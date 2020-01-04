@@ -1,6 +1,6 @@
 import Course from '../../models/Course';
-import { CREATE_COURSE, AppAction } from './actionTypes';
+import { CREATE_COURSE, CoursesAction } from './actionTypes';
 
-export const createCourse = (course: Course): AppAction => {
+export const createCourse = (course: Course): CoursesAction => {
   return { type: CREATE_COURSE, course };
 };

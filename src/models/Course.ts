@@ -1,9 +1,9 @@
 type Course = {
-  id: string;
-  slug: string;
+  //id: string | null;
+  //slug: string;
   title: string;
-  authorId: string;
-  category: string;
+  //authorId: string | null;
+  //category: string;
 };
 
 export default Course;
