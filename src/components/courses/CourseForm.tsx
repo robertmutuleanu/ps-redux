@@ -45,7 +45,7 @@ const CourseForm = ({ courseData, authors, onSubmit, onChange, isLoading = false
 type Props = {
   courseData: UpsertCourseRequest;
   authors: Author[];
-  onSubmit: (event: React.SyntheticEvent) => void;
+  onSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
   onChange: (event: React.ChangeEvent<any>) => void;
   isLoading?: boolean;
   errors?: Errors;

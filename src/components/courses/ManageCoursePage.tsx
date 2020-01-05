@@ -59,7 +59,7 @@ const ManageCoursePage = (props: Props) => {
     return Object.keys(nextErrors).length === 0;
   };
 
-  const handleSubmit = (event: React.SyntheticEvent): void => {
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
     event.preventDefault();
 
     if (isLoading) {
