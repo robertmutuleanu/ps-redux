@@ -1,13 +1,14 @@
 import React, { useEffect } from 'react';
-import { useSelector, useDispatch, shallowEqual } from 'react-redux';
+import { useSelector, shallowEqual } from 'react-redux';
+import { Link, RouteComponentProps } from 'react-router-dom';
 import { getCourses, getAuthors } from '../../redux/actions';
 import { AppState } from '../../redux/reducers';
 import CourseList from './CourseList';
-import { Link, RouteComponentProps } from 'react-router-dom';
+import { useThunkDispatch } from '../../redux/store';
 
 const CoursesPage = (props: Props) => {
   const { courses } = useSelector(mapState, shallowEqual);
-  const dispatch = useDispatch();
+  const dispatch = useThunkDispatch();
 
   useEffect(() => {
     dispatch(getCourses());

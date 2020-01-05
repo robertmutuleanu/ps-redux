@@ -2,9 +2,9 @@
   "courses": [
     {
       "id": 1,
+      "title": "Securing React Apps with Auth0",
       "slug": "react-auth0-authentication-security",
-      "title": "Securing React Apps with Auth0111",
-      "authorId": 3,
+      "authorId": 1,
       "category": "JavaScript"
     },
     {
@@ -69,28 +69,11 @@
       "slug": "web-components-shadow-dom",
       "authorId": 1,
       "category": "HTML5"
-    },
-    {
-      "id": 11,
-      "slug": "qrewrqewr",
-      "title": "qrewrqewr",
-      "authorId": 1,
-      "category": "qewrqwer",
-      "createdAt": 1578181694129
     }
   ],
   "authors": [
-    {
-      "id": 1,
-      "name": "Cory House"
-    },
-    {
-      "id": 2,
-      "name": "Scott Allen"
-    },
-    {
-      "id": 3,
-      "name": "Dan Wahlin"
-    }
+    { "id": 1, "name": "Cory House" },
+    { "id": 2, "name": "Scott Allen" },
+    { "id": 3, "name": "Dan Wahlin" }
   ]
 }

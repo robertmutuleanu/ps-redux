@@ -7,6 +7,7 @@ import { selectCourseBySlug } from '../../redux/reducers/courses';
 import { AppState } from '../../redux/reducers';
 import CourseForm, { Errors } from './CourseForm';
 import { useThunkDispatch } from '../../redux/store';
+import Spinner from '../common/Spinner';
 
 const ManageCoursePage = (props: Props) => {
   const { course, authors } = useSelector((state: AppState) => mapState(state, props), shallowEqual);
@@ -19,8 +20,8 @@ const ManageCoursePage = (props: Props) => {
     authorId: course?.authorId ?? null,
     category: course?.category ?? ''
   });
-  const [errors, setErrors] = useState({} as Errors);
   const [isLoading, setIsLoading] = useState(false);
+  const [errors, setErrors] = useState({});
 
   useEffect(() => {
     const slug = props.match.params.slug;
@@ -56,20 +57,15 @@ const ManageCoursePage = (props: Props) => {
     if (!courseData.category) nextErrors.category = 'Category is required.';
 
     setErrors(nextErrors);
+
     return Object.keys(nextErrors).length === 0;
   };
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
     event.preventDefault();
 
-    if (isLoading) {
-      return;
-    }
-
-    if (!formIsValid()) {
-      return;
-    }
-
+    if (isLoading) return;
+    if (!formIsValid()) return;
     setIsLoading(true);
 
     dispatch(saveCourse(courseData)).then(
@@ -82,6 +78,11 @@ const ManageCoursePage = (props: Props) => {
       }
     );
   };
+
+  const slug = props.match.params.slug;
+  if (slug && !course) {
+    return <Spinner />;
+  }
 
   return (
     <CourseForm

@@ -15,9 +15,9 @@ export const getCourses = (): AppThunk<Promise<any>> => dispatch => {
     response => {
       dispatch(getCoursesSuccess(response));
     },
-    errorMessage => {
-      dispatch(getCoursesFailure(errorMessage));
-      throw errorMessage;
+    (error: Error) => {
+      dispatch(getCoursesFailure(error.message));
+      throw error;
     }
   );
 };
@@ -33,9 +33,9 @@ export const getCourse = (slug: string): AppThunk<Promise<any>> => dispatch => {
     response => {
       dispatch(getCourseSuccess(response));
     },
-    errorMessage => {
-      dispatch(getCourseFailure(errorMessage));
-      throw errorMessage;
+    (error: Error) => {
+      dispatch(getCourseFailure(error.message));
+      throw error;
     }
   );
 };
@@ -54,9 +54,9 @@ export const saveCourse = (course: UpsertCourseRequest): AppThunk<Promise<any>> 
     response => {
       course.id ? dispatch(updateCourseSuccess(response)) : dispatch(createCourseSuccess(response));
     },
-    errorMessage => {
-      course.id ? dispatch(updateCourseFailure(errorMessage)) : dispatch(createCourseFailure(errorMessage));
-      throw errorMessage;
+    (error: Error) => {
+      course.id ? dispatch(updateCourseFailure(error.message)) : dispatch(createCourseFailure(error.message));
+      throw error;
     }
   );
 };

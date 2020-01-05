@@ -12,7 +12,6 @@ import 'react-toastify/dist/ReactToastify.css';
 const App = () => {
   return (
     <div className="container-fluid">
-      <ToastContainer autoClose={3000} hideProgressBar />
       <Header />
       <Switch>
         <Route path="/" exact component={HomePage} />
@@ -22,6 +21,7 @@ const App = () => {
         <Route path="/course" component={ManageCoursePage} />
         <Route component={NotFoundPage} />
       </Switch>
+      <ToastContainer autoClose={3000} hideProgressBar />
     </div>
   );
 };

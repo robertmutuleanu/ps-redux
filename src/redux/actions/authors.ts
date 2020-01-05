@@ -15,9 +15,9 @@ export const getAuthors = (): AppThunk<Promise<any>> => dispatch => {
     response => {
       dispatch(getAuthorsSuccess(response));
     },
-    errorMessage => {
-      dispatch(getAuthorsFailure(errorMessage));
-      throw errorMessage;
+    (error: Error) => {
+      dispatch(getAuthorsFailure(error.message));
+      throw error;
     }
   );
 };
