@@ -1,7 +1,6 @@
 import { createStore, applyMiddleware, compose, Action } from 'redux';
-import thunk, { ThunkAction, ThunkDispatch } from 'redux-thunk';
+import thunk, { ThunkAction } from 'redux-thunk';
 import rootReducer, { AppState } from './reducers';
-import { useDispatch } from 'react-redux';
 
 declare global {
   interface Window {
@@ -25,5 +24,3 @@ export type PersistedState = {
 };
 
 export type AppThunk<ReturnType = void> = ThunkAction<ReturnType, AppState, null, Action<string>>;
-
-export const useThunkDispatch = () => useDispatch<ThunkDispatch<AppState, any, Action>>();

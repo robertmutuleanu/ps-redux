@@ -1,18 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import { useSelector, shallowEqual } from 'react-redux';
+import { connect, ConnectedProps } from 'react-redux';
 import { RouteComponentProps } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { getAuthors, getCourse, saveCourse } from '../../redux/actions';
 import { selectCourseBySlug } from '../../redux/reducers/courses';
 import { AppState } from '../../redux/reducers';
 import CourseForm, { Errors } from './CourseForm';
-import { useThunkDispatch } from '../../redux/store';
 import Spinner from '../common/Spinner';
 
-const ManageCoursePage = (props: Props) => {
-  const { course, authors } = useSelector((state: AppState) => mapState(state, props), shallowEqual);
-  const dispatch = useThunkDispatch();
-
+const ManageCoursePage = ({ course, authors, getCourse, getAuthors, saveCourse, history, match }: Props) => {
   const [courseData, setCourseData] = useState({
     id: course?.id ?? null,
     slug: course?.slug ?? '',
@@ -24,23 +20,23 @@ const ManageCoursePage = (props: Props) => {
   const [errors, setErrors] = useState({});
 
   useEffect(() => {
-    const slug = props.match.params.slug;
+    const slug = match.params.slug;
     if (!slug) {
       return;
     }
 
     if (!course) {
-      dispatch(getCourse(slug));
+      getCourse(slug);
     } else {
       setCourseData(course);
     }
-  }, [course, props.match.params.slug, dispatch]);
+  }, [course, getCourse, match.params.slug]);
 
   useEffect(() => {
     if (authors.length === 0) {
-      dispatch(getAuthors());
+      getAuthors();
     }
-  }, [authors.length, dispatch]);
+  }, [authors.length, getAuthors]);
 
   const handleChange = ({ target }: React.ChangeEvent<any>): void => {
     setCourseData({
@@ -68,9 +64,9 @@ const ManageCoursePage = (props: Props) => {
     if (!formIsValid()) return;
     setIsLoading(true);
 
-    dispatch(saveCourse(courseData)).then(
+    saveCourse(courseData).then(
       () => {
-        props.history.push('/courses');
+        history.push('/courses');
         toast.success(`Course saved.`);
       },
       () => {
@@ -79,7 +75,7 @@ const ManageCoursePage = (props: Props) => {
     );
   };
 
-  const slug = props.match.params.slug;
+  const slug = match.params.slug;
   if (slug && !course) {
     return <Spinner />;
   }
@@ -96,9 +92,11 @@ const ManageCoursePage = (props: Props) => {
   );
 };
 
-type Props = {} & RouteComponentProps<{ slug?: string }>;
+type Props = OwnProps & ConnectedProps<typeof connector>;
 
-const mapState = (state: AppState, { match }: Props) => {
+type OwnProps = {} & RouteComponentProps<{ slug?: string }>;
+
+const mapState = (state: AppState, { match }: OwnProps) => {
   const slug = match.params.slug;
   const course = slug ? selectCourseBySlug(state.courses, slug) : null;
   return {
@@ -107,4 +105,11 @@ const mapState = (state: AppState, { match }: Props) => {
   };
 };
 
+const mapDispatch = {
+  getCourse,
+  getAuthors,
+  saveCourse
+};
+
+const connector = connect(mapState, mapDispatch);
 export default ManageCoursePage;

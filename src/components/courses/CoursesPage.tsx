@@ -1,19 +1,15 @@
 import React, { useEffect } from 'react';
-import { useSelector, shallowEqual } from 'react-redux';
+import { connect, ConnectedProps } from 'react-redux';
 import { Link, RouteComponentProps } from 'react-router-dom';
 import { getCourses, getAuthors } from '../../redux/actions';
 import { AppState } from '../../redux/reducers';
 import CourseList from './CourseList';
-import { useThunkDispatch } from '../../redux/store';
 
-const CoursesPage = (props: Props) => {
-  const { courses } = useSelector(mapState, shallowEqual);
-  const dispatch = useThunkDispatch();
-
+const CoursesPage = ({ courses, getCourses, getAuthors }: Props) => {
   useEffect(() => {
-    dispatch(getCourses());
-    dispatch(getAuthors());
-  }, [dispatch]);
+    getCourses();
+    getAuthors();
+  }, [getCourses, getAuthors]);
 
   return (
     <>
@@ -26,7 +22,7 @@ const CoursesPage = (props: Props) => {
   );
 };
 
-type Props = {} & RouteComponentProps;
+type Props = {} & RouteComponentProps & ConnectedProps<typeof connector>;
 
 const mapState = (state: AppState) => {
   const coursesWithAuthorNames =
@@ -42,4 +38,10 @@ const mapState = (state: AppState) => {
   };
 };
 
+const mapDispatch = {
+  getCourses,
+  getAuthors
+};
+
+const connector = connect(mapState, mapDispatch);
 export default CoursesPage;
