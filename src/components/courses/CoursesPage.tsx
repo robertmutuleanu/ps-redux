@@ -44,4 +44,4 @@ const mapDispatch = {
 };
 
 const connector = connect(mapState, mapDispatch);
-export default CoursesPage;
+export default connector(CoursesPage);
